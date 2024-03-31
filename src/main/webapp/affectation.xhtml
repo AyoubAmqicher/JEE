@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/template.xhtml">
+
+    <ui:define name="header">
+        <nav class="navbar bg-body-tertiary">
+            <h1>Employee Affectation</h1>
+            <div class="justify-content-center">
+                <a href="employeeList.xhtml">Employees</a> | <a href="welcome.xhtml">Back to Home</a>
+            </div>
+        </nav>
+    </ui:define>
+    <ui:define name="content">
+        <br/><br/>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <h:form id="AffectEmployee">
+                    <div class="mb-3">
+                        <h:outputText value="Employee Name :" styleClass="me-2" />
+                        <!-- Display employee names from database and allow selection -->
+                        <h:selectOneMenu value="#{employeeBean.selectedEmployee}">
+                            <f:selectItems value="#{employeeBean.employeeNames}" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <div class="mb-3 row justify-content-center">
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <h:outputText value="Project Name :" styleClass="me-2" />
+                            <h:selectManyCheckbox value="#{employeeBean.selectedProjects}" styleClass="mx-auto">
+                                <f:selectItems value="#{employeeBean.projectNames}" />
+                            </h:selectManyCheckbox>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <h:outputText value="Implication :" styleClass="me-2" />
+                        <div class="input-group">
+                            <h:inputText type="number" class="form-control" id="percentageInput" value="#{employeeBean.percentageImplication}" min="0" max="100" onchange="updateProgressBar(this.value)" >
+                                <f:validator validatorId="percentageValidator" />
+                            </h:inputText>
+                            <span class="input-group-text">%</span>
+                        </div>
+                        <div class="progress mt-3" style="height: 25px;">
+                            <div class="progress-bar" id="progressBar" role="progressbar" style="width: #{employeeBean.percentageImplication}%" aria-valuenow="#{employeeBean.percentageImplication}" aria-valuemin="0" aria-valuemax="100">
+                                #{employeeBean.percentageImplication}%
+                            </div>
+                        </div>
+                    </div>
+                    <h:message for="percentageInput" styleClass="text-danger" />
+                    <br/><br/>
+
+
+
+                    <script>
+                        function updateProgressBar(value) {
+                            var progressBar = document.getElementById('progressBar');
+                            progressBar.style.width = value + '%';
+                            progressBar.setAttribute('aria-valuenow', value);
+                            progressBar.textContent = value + '%';
+                        }
+                    </script>
+
+
+                    <h:commandButton value="Affecter project" action="#{employeeBean.affectProject}" styleClass="btn btn-outline-success" />
+                    <br/><br/>
+                    <h:messages  styleClass="alert alert-danger" />
+                </h:form>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

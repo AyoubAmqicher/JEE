@@ -1,0 +1,25 @@
+thead tr th:nth-child(odd),
+thead tr th:nth-child(even) {
+    background-color: black;
+    color: white;
+}
+
+tbody  tr:nth-child(odd) {
+    background-color: beige;
+}
+.table-center {
+    margin: 0 auto;
+}
+#footer {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    line-height: 100px;
+}
+
+
+
+
+
+
+

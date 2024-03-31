@@ -1,0 +1,29 @@
+<!DOCTYPE html [
+        <!ENTITY copy "&#169;">
+        ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Employee List</title>
+    <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
+    <h:outputScript library="webjars" name="bootstrap/5.3.3/js/bootstrap.bundle.min.js" />
+    <h:outputStylesheet library="css" name="styles.css" />
+
+</h:head>
+<h:body>
+    <div id="header" >
+        <!-- En-tête du site -->
+        <ui:insert name="header"></ui:insert>
+    </div>
+
+    <div id="content" class="text-center py-4">
+        <!-- Contenu variable -->
+        <ui:insert name="content" ></ui:insert>
+    </div>
+    <div id="footer" class="text-Black text-center py-4">
+        <!-- Pied de page -->
+        <ui:insert name="footer" ></ui:insert>
+    </div>
+</h:body>
+</html>
